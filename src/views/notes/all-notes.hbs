@@ -1,0 +1,19 @@
+<div class="row">
+    {{#each notes}}
+    <div class="col-md-3">
+        <div class="card">
+            <div class="card-body">
+                <h4 class="card-title"> {{title}} </h4>
+                <p> {{description}} </p>
+                <a href="/notes/update/{{_id}}">Editar</a>
+                <a href="/notes/delete/{{_id}}">Delete</a>
+                {{#if done}}
+                    <a href="/notes/toggleDone/{{_id}}">Undone</a>
+                {{else}}
+                    <a href="/notes/toggleDone/{{_id}}">Done</a>
+                {{/if}}
+            </div>
+        </div>
+    </div>
+    {{/each}}
+</div>

@@ -1,0 +1,25 @@
+<form action="/notes/update/{{note._id}}" method="POST">
+    <div class="form-group">
+        <input 
+        type="text" 
+        name="title" 
+        class="form-control" 
+        placeholder="Title" 
+        value="{{note.title}}" 
+        autofocus>
+    </div>
+    <div class="form-gropup">
+        <textarea 
+        name="description" 
+        id="description" 
+        placeholder="Description" 
+        class="form-control" 
+        >{{note.description}}</textarea>
+    </div>
+    <div class="form-grop">
+        <button 
+        class="btn btn-primary btn-block" 
+        type="submit"
+        >Save</button>
+    </div>
+</form>
