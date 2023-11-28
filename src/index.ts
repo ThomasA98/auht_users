@@ -1,17 +1,19 @@
-const express = require('express');
-const path = require('path');
-const exphbs = require('express-handlebars');
-const methodOverride = require('method-override');
-const session = require('express-session');
+import express from 'express';
+import session from 'express-session';
+import { engine } from 'express-handlebars';
+import methodOverride from 'method-override';
+import path from 'path';
+import { BaseRouter } from './routes/base';
+import { NotesRouter } from './routes/notes';
+import { UsersRouter } from './routes/users';
 
-//inicializations
+//initialization
 const app = express();
-require('./database');
 
 //settings
 app.set('port', process.env.PORT || 3000);
-app.set('views', path.join(__dirname, 'src/views'));
-app.engine('.hbs', exphbs.engine({
+app.set('views', path.join(__dirname, 'views'));
+app.engine('.hbs', engine({
     defaultLayout: 'main',
     layoutsDir: path.join(app.get('views'), 'layouts'),
     partialsDir: path.join(app.get('views'), 'partials'),
@@ -19,7 +21,7 @@ app.engine('.hbs', exphbs.engine({
 }));
 app.set('view engine', '.hbs');
 
-//middlewars
+//middlewares
 app.use(express.urlencoded({extended: false}));
 app.use(methodOverride('_method'));
 app.use(session({
@@ -31,9 +33,9 @@ app.use(session({
 //global variables
 
 //routes
-app.use(require('./src/routes/index'));
-app.use(require('./src/routes/notes'));
-app.use(require('./src/routes/users'));
+app.use(BaseRouter);
+app.use(NotesRouter);
+app.use(UsersRouter);
 
 //statics files
 app.use(express.static(path.join(__dirname, 'src/public')));
