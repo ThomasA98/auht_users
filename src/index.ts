@@ -6,12 +6,15 @@ import path from 'path';
 import { BaseRouter } from './routes/base';
 import { NotesRouter } from './routes/notes';
 import { UsersRouter } from './routes/users';
+import { AuthDefault } from './routes';
+
+import env from './env'
 
 //initialization
 const app = express();
 
 //settings
-app.set('port', process.env.PORT || 3000);
+app.set('port', env.PORT);
 app.set('views', path.join(__dirname, 'views'));
 app.engine('.hbs', engine({
     defaultLayout: 'main',
@@ -34,6 +37,7 @@ app.use(session({
 
 //routes
 app.use(BaseRouter);
+app.use('/auth', AuthDefault);
 app.use(NotesRouter);
 app.use(UsersRouter);
 
