@@ -1,12 +1,9 @@
+import path from 'path';
 import express from 'express';
 import session from 'express-session';
 import { engine } from 'express-handlebars';
 import methodOverride from 'method-override';
-import path from 'path';
-import { BaseRouter } from './routes/base';
-import { NotesRouter } from './routes/notes';
-import { UsersRouter } from './routes/users';
-import { AuthDefault } from './routes';
+import { BaseRouter, AuthDefault, NotesRouter, UsersRouter } from './routes';
 
 import env from './env'
 
